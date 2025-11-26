@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px 60px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            background: #ffffff;
+            color: #ff6b81;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #ffe6ec;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            animation: fall 4s linear infinite;
+            top: -10px;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(120vh) rotate(360deg); }
+        }
+
+        /* Balloon animation */
+        .balloon {
+            position: fixed;
+            width: 30px;
+            height: 40px;
+            border-radius: 50% 50% 50% 50%;
+            animation: balloonUp linear forwards;
+        }
+
+        @keyframes balloonUp {
+            0% { transform: translateY(100vh) scale(1); }
+            100% { transform: translateY(-100vh) scale(1.2); }
+        }
+
+        /* Heart particles */
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: floatUp 4s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: 10px; top: 0; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-120vh) scale(1.5) rotate(45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Happy Advanced Birthday <span id="name">vavakutty</span>! 🎉</h1>
+        <h2>Wishing you all the happiness and love in advance!</h2>
+        <p class="message" id="customMessage">Happiest wishes in advance, Lilly Kutty! ❤️</p>
+        <button onclick="startConfetti()">Celebrate ✨</button>
+    </div>
+
+    <script>
+        const birthdayName = "vavakutty";
+        const birthdayMessage = "Happiest wishes in advance, Lilly Kutty! ❤️";
+
+        document.getElementById("name").innerText = birthdayName;
+        document.getElementById("customMessage").innerText = birthdayMessage;
+
+        function startConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 70%)`;
+                confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        function releaseBalloons() {
+            for (let i = 0; i < 30; i++) {
+                const balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 70%)`;
+                balloon.style.animationDuration = Math.random() * 3 + 3 + "s";
+                document.body.appendChild(balloon);
+                setTimeout(() => balloon.remove(), 7000);
+            }
+        }
+
+        function releaseHearts() {
+            for (let i = 0; i < 40; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }
+        }
+
+        const originalStart = startConfetti;
+        startConfetti = function() {
+            originalStart();
+            releaseBalloons();
+            releaseHearts();
+        };
+    </script>
+</body>
+</html>

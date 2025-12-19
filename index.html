@@ -1,182 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Lilly Kutty 🎉</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Lilly Kutty 💖</title>
 
-    .container {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 30px 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      color: #fff;
-      position: relative;
-      z-index: 2;
-    }
+<style>
+*{
+  margin:0; padding:0; box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+body{overflow:hidden;background:#000;}
 
-    h1 {
-      font-size: 2.6rem;
-      margin-bottom: 10px;
-    }
+/* INTRO */
+.intro{
+  position:fixed; inset:0;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  text-align:center; z-index:5;
+  transition:transform .9s ease;
+}
+.intro h1{color:#fff;font-size:2.6rem;}
+.intro p{color:#fff;margin-top:15px;font-size:1.2rem;animation:bounce 1.5s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-    h2 {
-      font-size: 1.8rem;
-      margin: 10px 0;
-    }
+/* PASSWORD */
+.lock{
+  position:fixed; inset:0;
+  background:linear-gradient(135deg,#1d2671,#c33764);
+  display:flex; justify-content:center; align-items:center;
+  z-index:4; opacity:0; pointer-events:none;
+  transition:.5s;
+}
+.lock.active{opacity:1; pointer-events:auto;}
+.lock-box{
+  background:rgba(255,255,255,.15);
+  padding:30px; border-radius:20px;
+  text-align:center; backdrop-filter:blur(10px);
+}
+.lock-box h2{color:#fff;margin-bottom:10px;}
+.lock-box input{padding:10px;border:none;border-radius:10px;text-align:center;font-size:1.1rem;}
+.lock-box button{margin-top:15px;padding:10px 20px;border:none;border-radius:20px;background:#ff4d6d;color:#fff;font-size:1rem;cursor:pointer;}
+.error{color:#ffd1dc;margin-top:10px;}
 
-    .age {
-      font-size: 4rem;
-      font-weight: bold;
-      margin: 20px 0;
-      color: #fff176;
-      text-shadow: 0 0 15px rgba(255,255,255,0.8);
-    }
+/* MAIN */
+.main{
+  height:100vh; display:flex; justify-content:center; align-items:center;
+  background:linear-gradient(135deg,#ffecd2,#fcb69f);
+}
+.card{
+  background:rgba(255,255,255,.25);
+  padding:35px; border-radius:25px;
+  text-align:center; backdrop-filter:blur(10px);
+}
+.card h1{color:#ff4d6d;font-size:2.4rem;}
+.cake{font-size:4rem;margin:15px 0;}
+.age{font-size:2rem;color:#ff4d6d;}
+.open-letter{margin-top:20px;padding:12px 25px;border:none;border-radius:30px;background:#ff4d6d;color:#fff;font-size:1rem;cursor:pointer;}
 
-    .cake {
-      font-size: 5rem;
-      margin-top: 10px;
-    }
+/* LETTER */
+.letter{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.8);
+  display:flex; justify-content:center; align-items:center;
+  opacity:0; pointer-events:none; transition:.5s;
+}
+.letter.active{opacity:1; pointer-events:auto;}
+.paper{
+  background:#fff; color:#333;
+  max-width:500px; padding:30px;
+  border-radius:20px; line-height:1.6;
+  animation:open .8s ease;
+}
+@keyframes open{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
 
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 60px;
-      height: 80px;
-      background: radial-gradient(circle at 30% 30%, #fff, #ff4081);
-      border-radius: 50% 50% 50% 50%;
-      animation: floatUp 8s linear infinite;
-      opacity: 0.9;
-    }
-
-    .balloon::after {
-      content: '';
-      position: absolute;
-      width: 2px;
-      height: 40px;
-      background: #fff;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
-    }
-
-    .heart {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: red;
-      transform: rotate(45deg);
-      animation: heartFloat 6s linear infinite;
-      opacity: 0.7;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: '';
-      width: 12px;
-      height: 12px;
-      background: red;
-      border-radius: 50%;
-      position: absolute;
-    }
-
-    .heart::before {
-      top: -6px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -6px;
-      top: 0;
-    }
-
-    @keyframes heartFloat {
-      0% { transform: translateY(0) rotate(45deg); opacity: 0; }
-      20% { opacity: 1; }
-      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
-    }
-  </style>
+/* FIREWORKS */
+.spark{
+  position:fixed; width:6px; height:6px;
+  background:gold; border-radius:50%;
+  animation:boom 1s linear infinite;
+}
+@keyframes boom{0%{opacity:1}100%{transform:scale(3);opacity:0}}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>🎉 Happy Birthday 🎉</h1>
-    <h2>Lilly Kutty ❤️</h2>
-    <div class="cake">🎂</div>
-    <div class="age">19</div>
-    <p>Wishing you endless smiles, love, and happiness ✨</p>
+<div class="intro" id="intro">
+  <h1>Hey Lilly Kutty 💖</h1>
+  <p>Swipe up or Tap to open 🎁</p>
+</div>
+
+<div class="lock" id="lock">
+  <div class="lock-box">
+    <h2>🔒 Enter Password</h2>
+    <input type="password" id="pass" placeholder="****"><br>
+    <button onclick="checkPass()">Unlock</button>
+    <div class="error" id="error"></div>
   </div>
+</div>
 
-  <script>
-    // Balloons
-    function createBalloon() {
-      const balloon = document.createElement('div');
-      balloon.className = 'balloon';
-      balloon.style.left = Math.random() * 100 + 'vw';
-      balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
-      document.body.appendChild(balloon);
-      setTimeout(() => balloon.remove(), 9000);
-    }
+<div class="main">
+  <div class="card">
+    <h1>Happy Advanced Birthday 🎉</h1>
+    <div class="cake">🎂</div>
+    <div class="age">19 ✨</div>
+    <button class="open-letter" onclick="openLetter()">Open Letter 💌</button>
+  </div>
+</div>
 
-    // Hearts
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.bottom = '-20px';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
+<div class="letter" id="letter">
+  <div class="paper">
+    <p>
+Today isn’t just the day you were born — it’s the day the universe decided to create someone who dreams bigger than the sky itself. Ever since I met you, I admired the way your eyes light up when you talk about becoming an astronaut. You don’t just dream of stars — you belong among them.
+<br><br>
+One day, when you look down at Earth from space, I hope you remember that someone here has always believed in you more than anything.
+<br><br>
+Being with you has changed my life in ways I never expected. You bring happiness into my world so effortlessly — in your smile, your voice, your little reactions.
+<br><br>
+Yes, we have our small fights, tiny misunderstandings, silly arguments — but even those moments remind me how much we care. No matter what, we always find our way back to laughter.
+<br><br>
+One of my favorite things is the way you let me treat you like a child — the way you trust me, the way you get excited over small things. In those moments, my heart feels full.
+<br><br>
+<b>You are loved deeply.</b><br>
+<b>Your dreams matter.</b><br>
+<b>Your happiness matters.</b><br>
+<b>You matter — to me more than anything.</b>
+<br><br>
+Keep dreaming, my little astronaut 🚀<br><br>
+<b>Happy Birthday, my universe 🌌</b>
+    </p>
+  </div>
+</div>
 
-    setInterval(createBalloon, 600);
-    setInterval(createHeart, 300);
-      
-    // Fireworks
-    function createFirework() {
-      const firework = document.createElement('div');
-      firework.style.position = 'absolute';
-      firework.style.left = Math.random() * 100 + 'vw';
-      firework.style.top = Math.random() * 60 + 'vh';
-      firework.style.width = '8px';
-      firework.style.height = '8px';
-      firework.style.borderRadius = '50%';
-      firework.style.background = `hsl(${Math.random()*360},100%,60%)`;
-      firework.style.boxShadow = '0 0 20px currentColor';
-      firework.style.animation = 'explode 1.5s ease-out forwards';
-      document.body.appendChild(firework);
+<script>
+const intro=document.getElementById('intro');
+const lock=document.getElementById('lock');
+const letter=document.getElementById('letter');
 
-      setTimeout(() => firework.remove(), 1500);
-    }
+intro.onclick=()=>{intro.style.transform='translateY(-100%)';lock.classList.add('active');};
 
-    setInterval(createFirework, 800);
-  </script>
+let sy=0;
+intro.addEventListener('touchstart',e=>sy=e.touches[0].clientY);
+intro.addEventListener('touchend',e=>{if(sy-e.changedTouches[0].clientY>50){intro.onclick();}});
 
-  <style>
-    @keyframes explode {
-      0% { transform: scale(0.2); opacity: 1; }
-      100% { transform: scale(3); opacity: 0; }
-    }
-  </style>
+function checkPass(){
+  if(document.getElementById('pass').value==='7799'){
+    lock.classList.remove('active');
+  }else{
+    document.getElementById('error').innerText='Wrong password 💔';
+  }
+}
+
+function openLetter(){
+  let p=prompt('Enter password');
+  if(p==='7799'){letter.classList.add('active');}
+}
+
+setInterval(()=>{
+  const s=document.createElement('div');
+  s.className='spark';
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),1000);
+},250);
+</script>
 
 </body>
 </html>
